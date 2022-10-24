@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Notion Database id: 772a46b09e364abc8c703e4874b2dbbe
+
 First, run the development server:
 
 ```bash
