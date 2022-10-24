@@ -30,6 +30,7 @@ export default function Home({ cake, error }) {
       <Head>
         <title>Kuchen?</title>
         <meta name="description" content={`Wird ${name} Kuchen mitbringen?`} />
+        <meta lang='de' />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
