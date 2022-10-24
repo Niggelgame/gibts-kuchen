@@ -84,7 +84,7 @@ export async function getServerSideProps({ params, res }) {
             },
           },
           {
-            property: "Abgeliefert",
+            property: "Abgeliefert?",
             select: {
               equals: "Nö",
             },
