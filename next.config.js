@@ -10,11 +10,7 @@ const nextConfig = {
         permanent: true,
       },
     ]
-  },
-  i18n: {
-    locales: ['de'],
-    defaultLocale: 'de',
-  },
+  }
 }
 
 module.exports = nextConfig
