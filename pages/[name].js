@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { Client } from '@notionhq/client'
 
-export default function Home({ cake, error }) {
+export default function Home({ cake, nextDate, error }) {
   const { name } = useRouter().query;
 
   let content;
@@ -22,6 +22,10 @@ export default function Home({ cake, error }) {
       <p className={styles.description}>
         {cake ? 'Ja' : 'Nein'}
       </p>
+      {nextDate ? <p className={styles.date}>
+        {`Sogar schon am ${nextDate}!`}
+      </p> : ''}
+      
     </main>
   }
 
@@ -41,7 +45,7 @@ export default function Home({ cake, error }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          ©{ new Date().getFullYear() } A project by me.
+          ©{new Date().getFullYear()} A project by me.
         </a>
       </footer>
     </div>
@@ -110,9 +114,20 @@ export async function getServerSideProps({ params, res }) {
     }
   }
 
+  let nextDate = data.results.map(e => Date.parse(e.properties["Fällig wann"].date.start)).sort((a, b) => a - b)[0];
+
+  if (nextDate) {
+    let options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+    nextDate = new Date(nextDate).toLocaleDateString("de-DE", options);
+  } else {
+    nextDate = null;
+  }
+
+
   return {
     props: {
-      cake: data.results.length > 0
+      cake: data.results.length > 0,
+      nextDate: nextDate,
     },
   }
 }

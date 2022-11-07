@@ -51,10 +51,17 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 4rem 0 2rem 0;
   line-height: 1.5;
   font-size: 3rem;
   font-weight: 800;
+}
+
+.date {
+  margin: 1rem 0;
+  line-height: 1.2;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .code {
