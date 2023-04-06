@@ -114,7 +114,14 @@ export async function getServerSideProps({ params, res }) {
     }
   }
 
-  let nextDate = data.results.map(e => Date.parse(e.properties["Fällig wann"].date.start)).sort((a, b) => a - b)[0];
+  let nextDate = data.results.map(e => {
+    const potentialDate = e.properties["Fällig wann"].date;
+
+    if (!potentialDate) {
+      return -1;
+    }
+    return Date.parse(potentialDate.start);
+  }).filter(e => e !== -1).sort((a, b) => a - b)[0];
 
   if (nextDate) {
     let options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
