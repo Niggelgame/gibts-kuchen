@@ -16,14 +16,14 @@ export default function Home({ cake, nextDate, error }) {
   } else {
     content = <main className={styles.main}>
       <h1 className={styles.title}>
-        Bringt {name} bald Kuchen mit?
+        Will {name} bring cake soon?
       </h1>
 
       <p className={styles.description}>
-        {cake ? 'Ja' : 'Nein'}
+        {cake ? 'Yes' : 'No'}
       </p>
       {nextDate ? <p className={styles.date}>
-        {`Sogar schon am ${nextDate}!`}
+        {`At ${nextDate} already!`}
       </p> : ''}
       
     </main>
@@ -33,7 +33,7 @@ export default function Home({ cake, nextDate, error }) {
     <div className={styles.container}>
       <Head>
         <title>Kuchen?</title>
-        <meta name="description" content={`Wird ${name} Kuchen mitbringen?`} />
+        <meta name="description" content={`Will ${name} bring cake?`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -88,7 +88,7 @@ export async function getServerSideProps({ params, res }) {
             },
           },
           {
-            property: "Abgeliefert?",
+            property: "Delivered?",
             select: {
               equals: "Nö",
             },
@@ -115,7 +115,7 @@ export async function getServerSideProps({ params, res }) {
   }
 
   let nextDate = data.results.map(e => {
-    const potentialDate = e.properties["Fällig wann"].date;
+    const potentialDate = e.properties["Due when?"].date;
 
     if (!potentialDate) {
       return -1;
